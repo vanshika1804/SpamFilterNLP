@@ -1,4 +1,7 @@
 import pandas as pd
+import string
+from nltk.corpus import stopwords
+from sklearn.feature_extraction.text import CountVectorizer 
 
 
 def importData(path):
@@ -18,12 +21,23 @@ def convertDataToDataFrame(path):
     df = pd.read_csv(path, sep='\t', names=['label', 'msg'] )
     return df
 
+def dataPreprocessing(df):
+    nopunc = [char for char in df if char not in string.punctuation]
+    nopunc = ''.join(nopunc)
+    return [word for word in nopunc.split() if word.lower() not in stopwords.words('english'))]
+
+def countVectorizerModelCreation():
+    transformer = CountVectorizer(analyzer=dataPreprocessing)
+    return transformer
+
 
 def main():
     path = './SMSSpamCollection'
     # data = importData(path)
     # printData(data)
     df = convertDataToDataFrame(path)
+
+    
 
 
 if __name__ == '__main__':

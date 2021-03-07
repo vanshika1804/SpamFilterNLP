@@ -36,6 +36,11 @@ def fitModel(transformer,df):
     return X
 
 
+def transformModel(transformer,df):
+    transformedData = transformer.transform(df['msg'])
+    return transformedData
+
+
 def main():
     path = './SMSSpamCollection'
     # data = importData(path)
@@ -43,7 +48,8 @@ def main():
     df = convertDataToDataFrame(path)
     transformer = CountVectorizer()
     X = fitModel(transformer,df)
-
+    transformData = transformModel(transformer,df)
+    
 
 
     

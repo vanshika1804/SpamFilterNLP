@@ -1,7 +1,7 @@
 import pandas as pd
 import string
 from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import CountVectorizer 
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 
 
 def importData(path):
@@ -26,19 +26,39 @@ def dataPreprocessing(df):
     nopunc = ''.join(nopunc)
     return [word for word in nopunc.split() if word.lower() not in stopwords.words('english'))]
 
+
+def tfidfTransformerModelCreation():
+    pass
+
+
 def countVectorizerModelCreation():
     transformer = CountVectorizer(analyzer=dataPreprocessing)
     return transformer
 
 
-def fitModel(transformer,df):
+def fitVectorizerModel(transformer,df):
     X = transformer.fit(df['msg'])
     return X
 
 
-def transformModel(transformer,df):
+def transformVectorizerModel(transformer,df):
     transformedData = transformer.transform(df['msg'])
     return transformedData
+
+
+def tfidfTransformerModelCreation():
+    transformer = TfidfTransformer()
+    return transformer
+
+
+def fitTransformerModel(transformer,transformedData):
+    X = transformer.fit(transformedData)
+    return X
+
+
+def transformTransformerModel(transformer,transformedData):
+    tf_idftransformedData = transformer.transform(transformedData)
+    return tf_idftransformedData
 
 
 def main():
@@ -46,10 +66,20 @@ def main():
     # data = importData(path)
     # printData(data)
     df = convertDataToDataFrame(path)
-    transformer = CountVectorizer()
-    X = fitModel(transformer,df)
-    transformData = transformModel(transformer,df)
+    transformer = countVectorizerModelCreation()
+    # transformer = tfidfVectorizerModelCreation()
+    X = fitVectorizerModel(transformer,df)
+    transformedData = transformVectorizerModel(X,df)
+
+    tf_idftransformer = tfidfTransformerModelCreation()
+    X = fitTransformerModel(tf_idftransformer, transformedData)
+    tf_idftransformedData = transformTransformerModel(X, transformedData)
+
     
+
+
+
+
 
 
     

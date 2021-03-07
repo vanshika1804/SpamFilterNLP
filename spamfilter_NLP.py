@@ -3,6 +3,7 @@ import string
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import classification_report
 
 def importData(path):
     data = [
@@ -88,6 +89,7 @@ def main():
     spam_detect_model = trainModel(tf_idftransformedData,df)
     y_pred = testModel(spam_detect_model, tf_idftransformedData)
 
+    print(classification_report(df['label'],y_pred))
 
 
 

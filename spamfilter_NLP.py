@@ -31,11 +31,20 @@ def countVectorizerModelCreation():
     return transformer
 
 
+def fitModel(transformer,df):
+    X = transformer.fit(df['msg'])
+    return X
+
+
 def main():
     path = './SMSSpamCollection'
     # data = importData(path)
     # printData(data)
     df = convertDataToDataFrame(path)
+    transformer = CountVectorizer()
+    X = fitModel(transformer,df)
+
+
 
     
 

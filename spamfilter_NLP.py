@@ -2,7 +2,7 @@ import pandas as pd
 import string
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-
+from sklearn.naive_bayes import MultinomialNB
 
 def importData(path):
     data = [
@@ -61,6 +61,16 @@ def transformTransformerModel(transformer,transformedData):
     return tf_idftransformedData
 
 
+def trainModel(tf_idftransformedData,df):
+    spam_detect_model = MultinomialNB().fit(tf_idftransformedData, df['label'])
+    return spam_detect_model
+
+
+def testModel(spam_detect_model, tf_idftransformedData):
+    y_pred = spam_detect_model.predict(tf_idftransformedData)
+    return y_pred
+
+
 def main():
     path = './SMSSpamCollection'
     # data = importData(path)
@@ -75,7 +85,13 @@ def main():
     X = fitTransformerModel(tf_idftransformer, transformedData)
     tf_idftransformedData = transformTransformerModel(X, transformedData)
 
-    
+    spam_detect_model = trainModel(tf_idftransformedData,df)
+    y_pred = testModel(spam_detect_model, tf_idftransformedData)
+
+
+
+
+
 
 
 

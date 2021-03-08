@@ -65,6 +65,11 @@ def transformTransformerModel(transformer,transformedData):
     return tf_idftransformedData
 
 
+def trainModel(tf_idftransformedData,df):
+    spam_detect_model = MultinomialNB().fit(tf_idftransformedData, df['label'])
+    return spam_detect_model
+
+
 
 
 

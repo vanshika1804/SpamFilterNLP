@@ -23,7 +23,6 @@ def printData(data):
 
 
 
-
 def main():
     path = './SMSSpamCollection'
     # data = importData(path)

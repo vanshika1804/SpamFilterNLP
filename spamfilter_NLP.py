@@ -45,6 +45,11 @@ def fitVectorizerModel(transformer,df):
     return X
 
 
+def transformVectorizerModel(transformer,df):
+    transformedData = transformer.transform(df['msg'])
+    return transformedData
+
+
 
 
 

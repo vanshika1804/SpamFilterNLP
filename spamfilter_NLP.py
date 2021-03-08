@@ -40,6 +40,13 @@ def countVectorizerModelCreation():
     return transformer
 
 
+def fitVectorizerModel(transformer,df):
+    X = transformer.fit(df['msg'])
+    return X
+
+
+
+
 
 def main():
     path = './SMSSpamCollection'

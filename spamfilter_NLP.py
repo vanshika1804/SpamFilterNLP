@@ -70,7 +70,9 @@ def trainModel(tf_idftransformedData,df):
     return spam_detect_model
 
 
-
+def testModel(spam_detect_model, tf_idftransformedData):
+    y_pred = spam_detect_model.predict(tf_idftransformedData)
+    return y_pred
 
 
 def main():

@@ -16,63 +16,6 @@ def importData(path):
     return data
 
 
-def printData(data):
-    for message_index, message in enumerate(data[:10]):
-        print(f'{message_index} --> {message}')
-
-
-def convertDataToDataFrame(path):
-    df = pd.read_csv(path, sep='\t', names=['label', 'msg'] )
-    return df
-
-def dataPreprocessing(df):
-    nopunc = [char for char in df if char not in string.punctuation]
-    nopunc = ''.join(nopunc)
-    return [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
-
-
-def tfidfTransformerModelCreation():
-    pass
-
-
-def countVectorizerModelCreation():
-    transformer = CountVectorizer(analyzer=dataPreprocessing)
-    return transformer
-
-
-def fitVectorizerModel(transformer,df):
-    X = transformer.fit(df['msg'])
-    return X
-
-
-def transformVectorizerModel(transformer,df):
-    transformedData = transformer.transform(df['msg'])
-    return transformedData
-
-
-def tfidfTransformerModelCreation():
-    transformer = TfidfTransformer()
-    return transformer
-
-
-def fitTransformerModel(transformer,transformedData):
-    X = transformer.fit(transformedData)
-    return X
-
-
-def transformTransformerModel(transformer,transformedData):
-    tf_idftransformedData = transformer.transform(transformedData)
-    return tf_idftransformedData
-
-
-def trainModel(tf_idftransformedData,df):
-    spam_detect_model = MultinomialNB().fit(tf_idftransformedData, df['label'])
-    return spam_detect_model
-
-
-def testModel(spam_detect_model, tf_idftransformedData):
-    y_pred = spam_detect_model.predict(tf_idftransformedData)
-    return y_pred
 
 
 def main():

@@ -60,6 +60,12 @@ def fitTransformerModel(transformer,transformedData):
     return X
 
 
+def transformTransformerModel(transformer,transformedData):
+    tf_idftransformedData = transformer.transform(transformedData)
+    return tf_idftransformedData
+
+
+
 
 
 def main():

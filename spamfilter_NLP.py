@@ -16,6 +16,12 @@ def importData(path):
     return data
 
 
+def printData(data):
+    for message_index, message in enumerate(data[:10]):
+        print(f'{message_index} --> {message}')
+
+
+
 
 
 def main():

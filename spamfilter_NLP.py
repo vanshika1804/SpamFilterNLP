@@ -55,6 +55,10 @@ def tfidfTransformerModelCreation():
     return transformer
 
 
+def fitTransformerModel(transformer,transformedData):
+    X = transformer.fit(transformedData)
+    return X
+
 
 
 

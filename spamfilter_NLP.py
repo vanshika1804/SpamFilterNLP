@@ -21,6 +21,16 @@ def printData(data):
         print(f'{message_index} --> {message}')
 
 
+def convertDataToDataFrame(path):
+    df = pd.read_csv(path, sep='\t', names=['label', 'msg'] )
+    return df
+
+def dataPreprocessing(df):
+    nopunc = [char for char in df if char not in string.punctuation]
+    nopunc = ''.join(nopunc)
+    return [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
+
+
 
 
 def main():

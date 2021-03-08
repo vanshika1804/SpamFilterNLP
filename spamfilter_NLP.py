@@ -1,9 +1,12 @@
 import pandas as pd
 import string
+import nltk
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import classification_report
+
 
 def importData(path):
     data = [
@@ -25,7 +28,7 @@ def convertDataToDataFrame(path):
 def dataPreprocessing(df):
     nopunc = [char for char in df if char not in string.punctuation]
     nopunc = ''.join(nopunc)
-    return [word for word in nopunc.split() if word.lower() not in stopwords.words('english'))]
+    return [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
 
 
 def tfidfTransformerModelCreation():

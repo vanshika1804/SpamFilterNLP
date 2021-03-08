@@ -31,6 +31,14 @@ def dataPreprocessing(df):
     return [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
 
 
+def tfidfTransformerModelCreation():
+    pass
+
+
+def countVectorizerModelCreation():
+    transformer = CountVectorizer(analyzer=dataPreprocessing)
+    return transformer
+
 
 
 def main():
